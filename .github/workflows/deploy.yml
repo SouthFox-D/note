@@ -17,8 +17,6 @@ jobs:
 
       - name: Logseq Publish 🚩
         uses: pengx17/logseq-publish@main
-        with:
-          dest: www
 
       - name: Deploy
         env:
@@ -30,4 +28,4 @@ jobs:
           git init
           git add --all .
           git commit -m "GitHub action Auto Builder"
-          git push --quiet --force https://$DEPLOY_KEY@github.com/SouthFox-D/note www
+          git push --quiet --force https://$DEPLOY_KEY@github.com/SouthFox-D/note master
