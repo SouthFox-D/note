@@ -1,0 +1,33 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - note
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          mv ./logseq/config-publish.edn ./logseq/config.edn
+
+      - name: Logseq Publish 🚩
+        uses: pengx17/logseq-publish@main
+        with:
+          dest: www
+
+      - name: Deploy
+        env:
+          DEPLOY_KEY: ${{ secrets.NOTE_DEPLOY }}
+        run: |
+          git config --global user.name "SouthFox-D"
+          git config --global user.email "southfoxdreamer@gmail.com"
+          cd ./www
+          git init
+          git add --all .
+          git commit -m "GitHub action Auto Builder"
+          git push --quiet --force https://$DEPLOY_KEY@github.com/SouthFox-D/note www
