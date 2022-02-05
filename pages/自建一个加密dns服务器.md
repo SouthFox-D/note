@@ -27,7 +27,7 @@
 	- 到 [dnsproxy](https://github.com/AdguardTeam/dnsproxy/releases) 项目下载最新安装包。
 	- 解压，进入文件夹，运行 `dnsproxy` 。
 	- ```
-	  /dnsproxy -l 127.0.0.1 --https-port=10553 --tls-crt=/etc/letsencrypt/live/dns.foo.bar/fullchain.pem --tls-key=/etc/letsencrypt/live/dns.foo.bar/privkey.pem -u https://1.1.1.1/dns-query -f 8.8.8.8:53 -f 8.8.4.4:53 --cache --edns –edns-addr=[上一步配置的地址] -p 0
+	  ./dnsproxy -l 127.0.0.1 --https-port=10553 --tls-crt=/etc/letsencrypt/live/dns.foo.bar/fullchain.pem --tls-key=/etc/letsencrypt/live/dns.foo.bar/privkey.pem -u https://1.1.1.1/dns-query -f 8.8.8.8:53 -f 8.8.4.4:53 --cache --edns –edns-addr=[上一步配置的地址] -p 0
 	  ```
 - ### 使用！
 	- 配置下来，自建的 `doh` 服务器地址为，`https://dns.foo.bar/dns-query` 。
