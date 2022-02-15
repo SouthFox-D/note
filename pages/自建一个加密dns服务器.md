@@ -4,7 +4,7 @@
 	- 假设指定的域名为 `dns.foo.bar` 。
 - ### Nginx 反代
 	- 新建一个网站配置文件。
-	- ```
+	- ```nginx
 	  server {
 	     listen 443;
 	     server_name dns.foo.bar;
@@ -14,19 +14,19 @@
 	     proxy_pass         https://127.0.0.1:10553; # 后续dnsproxy监听的端口号
 	     }
 	  }
-	  ``` nginx
+	  ```
 	- 然后 `certbot --nginx` 申请证书。
 	- 再次编辑配置文件，加上 `http2` ，重载 `nginx` 。
-	- ```
+	- ```nginx
 	  listen 443 ssl http2; # managed by Certbot
-	  ``` nginx
+	  ```
 - ### 配置 ip
 	- 百度 `ip` ，知晓自己 `ip` 然后把最后一段改为 `1` ，降低风险。
 	- 此举是为了配置 `edns` 的 `ip` 地址，让国内网站访问速度变快。
 - ### 配置 dnsproxy
 	- 到 [dnsproxy](https://github.com/AdguardTeam/dnsproxy/releases) 项目下载最新安装包。
 	- 解压，进入文件夹，运行 `dnsproxy` 。
-	- ```
+	- ```shell
 	  ./dnsproxy -l 127.0.0.1 --https-port=10553 --tls-crt=/etc/letsencrypt/live/dns.foo.bar/fullchain.pem --tls-key=/etc/letsencrypt/live/dns.foo.bar/privkey.pem -u https://1.1.1.1/dns-query -f 8.8.8.8:53 -f 8.8.4.4:53 --cache --edns –edns-addr=[上一步配置的地址] -p 0
 	  ```
 - ### 使用！
