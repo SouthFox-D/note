@@ -1,5 +1,7 @@
 - 参考官方文档：[https://docs.joinmastodon.org/admin/scaling/](https://docs.joinmastodon.org/admin/scaling/)
-- `docker-compose` 如下：
+- 主要是增加 `DB_POOL` 数量，然后修改 `sidekiq` 启动参数(如下修改 `-c` 参数将线程设置为 `10`)。
+-
+- `docker-compose` 的 `sidekiq` 应该设置如下：
 	- ```docker-compose
 	    sidekiq:
 	      image: tootsuite/mastodon
@@ -19,7 +21,6 @@
 	  
 	  
 	  ```
-	- 主要是增加 `DB_POOL` 数量，然后修改 `sidekiq` 启动参数(如上修改 `-c` 参数将线程设置为 `10`)。
 	- 之后重载容器即可：
 	- ```shell
 	  docker-compose down #删除镜像
