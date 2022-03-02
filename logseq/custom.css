@@ -938,13 +938,9 @@ svg.add-button > .circle {
 a.external-link {border-bottom: 0px;}
 a.external-link:after {
 display:inline-block;
-content:"";
-width: 21px;
-height:16px;
-background: 
-    transparent
-    50% 200%/54% 
-    url('https://note.southfox.me/assets/SWJ.svg') no-repeat;        
+content:"↗";
+width: 20px;
+height:15px;     
 filter: invert(3%) sepia(100%) saturate(1920%) hue-rotate(0deg) brightness(1419%) contrast(249%);
 }
 
