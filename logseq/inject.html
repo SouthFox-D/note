@@ -1,0 +1,56 @@
+<!-- 评论系统放置在主内容区域 -->
+<script>
+    var container = document.getElementById('main-content-container');
+    container.style['flex-wrap'] = 'wrap';
+    container.firstChild.style['flex-basis'] = '100%';
+    var element = document.createElement('div');
+    element.classList.add('giscus');
+	container.appendChild(element);
+</script>
+<!-- 评论系统 -->
+<script src="https://giscus.app/client.js"
+        data-repo="southfox-d/note"
+        data-repo-id="R_kgDOGyvklA"
+        data-category="笔记评论"
+        data-category-id="DIC_kwDOGyvklM4CBRO4"
+        data-mapping="title"
+        data-reactions-enabled="0"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+<!-- SPA 评论系统刷新问题 -->
+<script>
+    history.pushState = (f => function pushState() {
+        var ret = f.apply(this, arguments);
+        window.dispatchEvent(new Event('pushstate'));
+        window.dispatchEvent(new Event('locationchange'));
+        return ret;
+    })(history.pushState);
+    history.replaceState = (f => function replaceState() {
+        var ret = f.apply(this, arguments);
+        window.dispatchEvent(new Event('replacestate'));
+        window.dispatchEvent(new Event('locationchange'));
+        return ret;
+    })(history.replaceState);
+    window.addEventListener('popstate', () => {
+        window.dispatchEvent(new Event('locationchange'))
+    });
+    window.addEventListener('locationchange', function() {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        const title = decodeURIComponent(location.hash.split('/').slice(-1)[0]);
+        console.debug("location change to:", title, iframe);
+        if (!iframe || !title) return;
+        iframe.contentWindow.postMessage({
+            giscus: {
+                setConfig: {
+                    term: title
+                }
+            }
+        }, 'https://giscus.app');
+        console.debug("try refresh giscus:", title);
+    }, false);
+</script>

@@ -17,7 +17,10 @@ jobs:
 
       - name: Logseq Publish 🚩
         uses: pengx17/logseq-publish@main
-
+      
+      - name: Inject Script
+        run: sed -i "s@</body>@$(tr '\n' ' ' < logseq/inject.html )</body>@"  www/index.html
+      
       - name: Deploy
         env:
           DEPLOY_KEY: ${{ secrets.NOTE_DEPLOY }}
