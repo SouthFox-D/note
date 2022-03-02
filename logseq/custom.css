@@ -933,3 +933,32 @@ svg.add-button > .circle {
 :root {
   --ls-font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
+
+/* === 外部链接加图标 ====*/ 
+a.external-link {border-bottom: 0px;}
+a.external-link:after {
+display:inline-block;
+content:"";
+width: 21px;
+height:16px;
+background: 
+    transparent
+    50% 200%/54% 
+    url('https://svgshare.com/i/SWJ.svg') no-repeat;        
+filter: invert(3%) sepia(100%) saturate(1920%) hue-rotate(0deg) brightness(1419%) contrast(249%);
+}
+
+/*--- highlight tree lines ---*/
+/*--- tweak left: and top: offset to match yout theme */
+.blocks-container > div:not(:first-child) .ls-block:focus-within > div:first-child .bullet:before{
+    content : "└─";
+    color:#f00;
+    display: inline-block;
+    left: -24px;
+    top: -6px;
+    width: 30px;
+    position: relative;
+}
+.ls-block > .block-children:focus-within {
+    border-left-color:#f00;
+}
