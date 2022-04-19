@@ -9,4 +9,5 @@
 	-
 - ## Org-mode
 	- [[org-mode]]
-	-
+- ## 方案
+	- [[解决 org-capture 配置被默认配置覆盖]]

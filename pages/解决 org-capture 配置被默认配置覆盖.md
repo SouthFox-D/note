@@ -1,0 +1,3 @@
+- 将配置括入 `(after! org)` 即可
+- 参考：https://github.com/hlissner/doom-emacs/issues/1391
+-
