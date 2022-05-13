@@ -1,0 +1,1 @@
+- `org-link-search-must-match-exact-headline` 设置成 `nil` 即可在任意链接中连接到任意文本了。
